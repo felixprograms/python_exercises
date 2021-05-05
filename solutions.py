@@ -1,5 +1,12 @@
 # 1 Define a function max() that takes two numbers as arguments and returns the largest of them. Use the if-then-else construct available in Python. (It is true that Python has the max() 
 
+def max(one, two):
+	if one > two:
+		return one
+	else:
+		return two
+
+print(max(2,3))
 
 # 2 Define a function max_of_three() that takes three numbers as arguments and returns the largest of them.
 
