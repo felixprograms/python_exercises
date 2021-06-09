@@ -155,3 +155,55 @@ def song():
 def translate(word):
 	dictionary = { "merry":"god", "christmas":"jul", "and":"och", "happy":"gott", "new":"nytt", "year":"år" }
 	return dictionary[word]
+
+#21. Write a function `char_freq()` that takes a string and builds a frequency listing of the characters contained in it. Represent the frequency listing as a Python dictionary. Try it with something like `char_freq("abbabcbdbabdbdbabababcbcbab")`.
+
+def char_freq(list):
+	for char in list:
+
+#23. Define a simple "spelling correction" function `correct()` that takes a string and sees to it that 1) two or more occurrences of the space character is compressed into one, and 2) inserts an extra space after a period if the period is directly followed by a letter. E.g. `correct("This   is  very funny  and    cool.Indeed!")` should return "This is very funny and cool. Indeed!" Tip: Use regular expressions!
+
+def correct(string):
+	corrected = " "
+	for char in string:
+		if char.is_alpha:
+			corrected += char
+
+#24. The third person singular verb form in English is distinguished by the suffix -s, which is added to the stem of the infinitive form: run -> runs. A simple set of rules can be given as follows:
+
+#a. If the verb ends in y, remove it and add ies
+#b. If the verb ends in o, ch, s, sh, x or z, add es
+#c. By default just add s
+#Your task in this exercise is to define a function `make_3sg_form()` which given a verb in infinitive form returns its third person singular form. Test your function with words like try, brush, run and fix. Note however that the rules must be regarded as heuristic, in the sense that you must not expect them to work for all cases. Tip: Check out the string method `endswith()`.
+
+def make_3sg_form(verb):
+	new_verb = ' '
+	verbbb = verb.split():
+	if verbbb[-1] == y
+		new_verb = verb[0..-1]  + ies
+	elif verbbb[-1] == o or ch or  s or sh or x or z:
+		new_verb = verb[0..-1]  + es
+	else new_verb = verb[0..-1]  + s
+	return new_verb
+	
+25. In English, the present participle is formed by adding the suffix -ing to the infinite form: go -> going. A simple set of heuristic rules can be given as follows:
+
+1. If the verb ends in e, drop the e and add ing (if not exception: be, see, flee, knee, etc.)
+2. If the verb ends in ie, change ie to y and add ing
+3. For words consisting of consonant-vowel-consonant, double the final letter before adding ing
+4. By default just add ing
+
+Your task in this exercise is to define a function `make_ing_form()` which given a verb in infinitive form returns its present participle form. Test your function with words such as lie, see, move and hug. However, you must not expect such simple rules to work for all cases.
+
+
+## Higher order functions and list comprehensions
+
+26. Using the higher order function `reduce()`, write a function `max_in_list()` that takes a list of numbers and returns the largest one. Then ask yourself: why define and call a new function, when I can just as well call the `reduce()` function directly?
+
+27. Write a program that maps a list of words into a list of integers representing the lengths of the corresponding words. Write it in three different ways: 1) using a for-loop, 2) using the higher order function `map()`, and 3) using list comprehensions.
+
+28. Write a function `find_longest_word()` that takes a list of words and returns the length of the longest one. Use only higher order functions.
+
+29. Using the higher order function `filter()`, define a function `filter_long_words()` that takes a list of words and an integer n and returns the list of words that are longer than n.
+
+30. Represent a small bilingual lexicon as a Python dictionary in the following fashion {"merry":"god", "christmas":"jul", "and":"o
