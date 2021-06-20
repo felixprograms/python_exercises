@@ -186,24 +186,158 @@ def make_3sg_form(verb):
 	else new_verb = verb[0..-1]  + s
 	return new_verb
 	
-25. In English, the present participle is formed by adding the suffix -ing to the infinite form: go -> going. A simple set of heuristic rules can be given as follows:
+# 25. In English, the present participle is formed by adding the suffix -ing to the infinite form: go -> going. A simple set of heuristic rules can be given as follows:
 
-1. If the verb ends in e, drop the e and add ing (if not exception: be, see, flee, knee, etc.)
-2. If the verb ends in ie, change ie to y and add ing
-3. For words consisting of consonant-vowel-consonant, double the final letter before adding ing
-4. By default just add ing
+# 1. If the verb ends in e, drop the e and add ing (if not exception: be, see, flee, knee, etc.)
+# 2. If the verb ends in ie, change ie to y and add ing
+# 3. For words consisting of consonant-vowel-consonant, double the final letter before adding ing
+# 4. By default just add ing
 
-Your task in this exercise is to define a function `make_ing_form()` which given a verb in infinitive form returns its present participle form. Test your function with words such as lie, see, move and hug. However, you must not expect such simple rules to work for all cases.
+# Your task in this exercise is to define a function `make_ing_form()` which given a verb in infinitive form returns its present participle form. Test your function with words such as lie, see, move and hug. However, you must not expect such simple rules to work for all cases.
+
+def make_ing_form(verb):
+	split = verb.split()
+	if split[-1] = e
+		return split[0..-2] + 'ing'
+	elif split[-1] = ie
+		return split[0..-2] + 'ying'
+	else split[-1]  NOT IN ['a', 'e', 'i', 'o', 'u'], split[-2] IN ['a', 'e', 'i', 'o', 'u'], split[-3] NOT IN ['a', 'e', 'i', 'o', 'u']
+		return split[0..-2] + split[-1] + split[-1] + 'ing'
+
+# 26. Using the higher order function `reduce()`, write a function `max_in_list()` that takes a list of numbers and returns the largest one. Then ask yourself: why define and call a new function, when I can just as well call the `reduce()` function directly?
+
+def max_in_list(list):
+	max = 0
+	for number in list:
+		if number >= max
+			max = number
+	return max
+
+# 27. Write a program that maps a list of words into a list of integers representing the lengths of the corresponding words. Write it in three different ways: 1) using a for-loop, 2) using the higher order function `map()`, and 3) using list comprehensions.
+
+def change(list):
+	length = ''
+		for word in list:
+			split = word.split()
+			length += split.count
+	return length
+
+# 28. Write a function `find_longest_word()` that takes a list of words and returns the length of the longest one. Use only higher order functions.
+def find_longest_word(list):
+	longest = ''
+	for word in list:
+		split = word.split()
+		if split.count >= longest
+			longest = word
+	return longest
+
+# 29. Using the higher order function `filter()`, define a function `filter_long_words()` that takes a list of words and an integer n and returns the list of words that are longer than n.
 
 
-## Higher order functions and list comprehensions
+# 30. Represent a small bilingual lexicon as a Python dictionary in the following fashion {"merry":"god", "christmas":"jul", "and":"o
 
-26. Using the higher order function `reduce()`, write a function `max_in_list()` that takes a list of numbers and returns the largest one. Then ask yourself: why define and call a new function, when I can just as well call the `reduce()` function directly?
+def translate(word):
+	dictionary = { "merry":"god", "christmas":"jul", "and":"och", "happy":"gott", "new":"nytt", "year":"år" }
+	return dictionary[word]
 
-27. Write a program that maps a list of words into a list of integers representing the lengths of the corresponding words. Write it in three different ways: 1) using a for-loop, 2) using the higher order function `map()`, and 3) using list comprehensions.
+# 31. Implement the higher order functions `map()`, `filter()` and `reduce()`. (They are built-in but writing them yourself may be a good exercise.)
 
-28. Write a function `find_longest_word()` that takes a list of words and returns the length of the longest one. Use only higher order functions.
+def my_map(list, function):
+	new_list = []
+	for element in list:
+		new_list.append(function(element))
+	return new_list
 
-29. Using the higher order function `filter()`, define a function `filter_long_words()` that takes a list of words and an integer n and returns the list of words that are longer than n.
+def my_filter(list, function):
+	new_list = []
+	for element in list:
+		if function(element):
+			new_list.append(element)
+	return new_list
 
-30. Represent a small bilingual lexicon as a Python dictionary in the following fashion {"merry":"god", "christmas":"jul", "and":"o
+def above_10(number):
+	return number > 10
+
+def my_reduce(list, accumulator, function):
+	for element in list:
+		accumulator = function(element, accumulator)
+	return accumulator
+
+def add(number, accumulator):
+	return number + accumulator
+
+def subtract(number, accumulator):
+	return accumulator - number
+
+my_reduce([1,2,3,4], 0, add)
+my_filter([1,5,20,30], above_10)
+# 32. Write a version of a palindrome recognizer that accepts a file name from the user, reads each line, and prints the line to the screen if it is a palindrome.
+
+def asdf(file):
+	return is_palindrome(file)
+# 33. According to Wikipedia, a semordnilap is a word or phrase that spells a different word or phrase backwards. ("Semordnilap" is itself "palindromes" spelled backwards.) Write a semordnilap recognizer that accepts a file name (pointing to a list of words) from the user and finds and prints all pairs of words that are semordnilaps to the screen. For example, if "stressed" and "desserts" is part of the word list, the the output should include the pair "stressed desserts". Note, by the way, that each pair by itself forms a palindrome!
+
+# 34. Write a procedure `char_freq_table()` that, when run in a terminal, accepts a file name from the user, builds a frequency listing of the characters contained in the file, and prints a sorted and nicely formatted character frequency table to the screen.
+
+# 35. The International Civil Aviation Organization (ICAO) alphabet assigns code words to the letters of the English alphabet acrophonically (Alfa for A, Bravo for B, etc.) so that critical combinations of letters (and numbers) can be pronounced and understood by those who transmit and receive voice messages by radio or telephone regardless of their native language, especially when the safety of navigation or persons is essential. Here is a Python dictionary covering one version of the ICAO alphabet:
+
+# Your task in this exercise is to write a procedure `speak_ICAO()` able to translate any text (i.e. any string) into spoken ICAO words. You need to import at least two libraries: os and time. On a mac, you have access to the system TTS (Text-To-Speech) as follows: `os.system('say ' + msg)`, where msg is the string to be spoken. (Under UNIX/Linux and Windows, something similar might exist.) Apart from the text to be spoken, your procedure also needs to accept two additional parameters: a float indicating the length of the pause between each spoken ICAO word, and a float indicating the length of the pause between each word spoken.
+
+# 36. A hapax legomenon (often abbreviated to hapax) is a word which occurs only once in either the written record of a language, the works of an author, or in a single text. Define a function that given the file name of a text will return all its hapaxes. Make sure your program ignores capitalization.
+
+# 37. Write a program that given a text file will create a new text file in which all the lines from the original file are numbered from 1 to n (where n is the number of lines in the file).
+
+def line_in_file(file):
+	file = open("gfg.txt","r")
+	Counter = 0
+	
+
+	Content = file.read()
+	CoList = Content.split("\n")
+	
+	for i in CoList:
+		if i:
+			Counter += 1
+
+print(Counter)
+# 38. Write a program that will calculate the average word length of a text stored in a file (i.e the sum of all the lengths of the word tokens in the text, divided by the number of word tokens).
+def average_length(sentence):
+	words = sentence.split()
+	average = sum(len(word) for word in words) / len(words)
+	return average
+
+# 39. Write a program able to play the "Guess the number"-game, where the number to be guessed is randomly chosen between 1 and 20. (Source: http://inventwithpython.com) This is how it should work when run in a terminal:
+
+# import guess_number Hello! What is your name? Torbjörn Well, Torbjörn, I am thinking of a number between 1 and 20. Take a guess. 10 Your guess is too low. Take a guess. 15 Your guess is too low. Take a guess. 18 Good job, Torbjörn! You guessed my number in 3 guesses!
+
+# Hello! What is your name?
+# Albert
+# Well, Albert, I am thinking of a number between 1 and 20.
+# Take a guess.
+# 10
+# Your guess is too high.
+# Take a guess.
+# 2
+# Your guess is too low.
+# Take a guess.
+# 4
+# Good job, Albert! You guessed my number in 3 guesses!
+
+def guess_the_number():
+	print("Hello! What is your name?")
+	input()
+
+
+guess_the_number()
+# 40. An anagram is a type of word play, the result of rearranging the letters of a word or phrase to produce a new word or phrase, using
+
+#  all the original letters exactly once; e.g., orchestra = carthorse, A decimal point = I'm a dot in place. Write a Python program that,
+#  
+# when started 1) randomly picks a word w from given list of words, 2) randomly permutes w (thus creating an anagram of w), 3) presents 
+
+# the anagram to the user, and 4) enters an interactive loop in which the user is invited to guess the original word. It may be a good 
+
+# idea to work with (say) colour words only. The interaction with the program may look like so:
+
+# import anagram Colour word anagram: onwbr Guess the colour word! black Guess the colour word! brown Correct!
+
